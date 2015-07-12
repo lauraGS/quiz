@@ -5,3 +5,18 @@ body             { background: #333; }
 h2 span, section h3 { display: none; }
 body             { font-size: xx-large; }
 input, footer     { font-size: large; }
+
+
+#cajaAutor{
+font-size: medium;
+}
+
+#imagenAutor #imagen1{
+width: 60%;
+float: left;
+margin-left:15px;
+}
+	
+#videoAutor  .video1{
+width:80%;
+}
