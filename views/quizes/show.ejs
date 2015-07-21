@@ -6,12 +6,13 @@
 	</head>
 	<body>
 		<h2>Quiz: el juego de las preguntas</h2>
-		<form method="get" action="/quizes/answer">
+		<form method="get" action="/quizes/<%= quiz.id %>/answer">        
 			<br></br>
-			Pregunta: <%= pregunta %>
+			Pregunta: <%= quiz.pregunta %>
 			<br></br>
 			<input type"text" name="respuesta" value="Respuesta"/>
 			<input type="submit" value="Enviar">
+			
 		</form>
 	</body>
 </html>
