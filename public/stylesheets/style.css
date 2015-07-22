@@ -33,3 +33,29 @@ margin-top:25px;
 width:40%;
 }
 
+#divBusqueda input{
+margin: 20px 5px 5px;
+ padding: 5px;
+}
+
+#divBusqueda #inputSearch{
+width:40%;
+
+}
+
+#btnSearch{
+background-color:#CEE3F6;
+}
+
+#divTabla{
+margin-top: 50px;
+}
+
+#divTabla #tablaPreguntas{
+width:100%;
+margin-top:15px;
+}
+
+#divTabla tr{
+margin:5px;
+}
