@@ -21,7 +21,7 @@ exports.index = function(req, res) {
 			res.render('quizes/index', {quizes: quizes});
 		});
 	 }else{
-		models.Quiz.findAll({where : ["UPPER(pregunta) like ? ", '%'+search.toUpperCase().replace(/\s+/g, '%')+'%']}).then(function(quizes){
+		models.Quiz.findAll({where : ["UPPER(pregunta) like ? ", '%'+search.toUpperCase().replace(/\s+/g, '%')+'%'], order : [["pregunta", "ASC"]]}).then(function(quizes){
 		res.render('quizes/index', {quizes: quizes});
 		});
 	 }
@@ -38,9 +38,8 @@ exports.answer = function(req, res) {
 	var resultado = 'Incorrecto';
 	if((req.query.respuesta).toUpperCase() === (req.quiz.respuesta).toUpperCase()){
 	resultado='Correcto';
-	}else{
-	res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado});
 	}
+	res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado});
 		
 };
 
