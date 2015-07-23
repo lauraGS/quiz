@@ -59,3 +59,37 @@ margin-top:15px;
 #divTabla tr{
 margin:5px;
 }
+
+#divBtnNew {
+margin-top:15px;
+}
+
+#divBtnNew  button{
+background-color:#0489B1;
+color:white;
+padding:3px;
+}
+
+#divNew label{
+margin:10px;
+}
+
+#divNew input{
+margin:10px;
+}
+
+#divNew .inputNew{
+   padding: 5px;
+    width: 40%;
+}
+
+#divNew #btnSave{
+padding: 3px;
+background-color:#CEE3F6;
+}
+
+#divNew button{
+padding: 3px;
+background-color:#CEE3F6;
+}
+
