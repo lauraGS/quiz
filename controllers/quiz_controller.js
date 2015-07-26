@@ -10,7 +10,7 @@ exports.load = function(req, res, next, quizId){
 			next(new Error('No existe quizId='+quizId));
 		}
 	
-	}).catch(function(error){next(error);});
+	}).catch(function(error){next(error)});
 };
 
 // GET /quizes
@@ -18,19 +18,19 @@ exports.index = function(req, res) {
 	 var search = req.query.search;
 	 if(search === undefined){
 		models.Quiz.findAll().then(function(quizes){
-			res.render('quizes/index', {quizes: quizes});
-		});
+			res.render('quizes/index', {quizes: quizes, errors: []});
+		}).catch(function(error){next(error)});
 	 }else{
 		models.Quiz.findAll({where : ["UPPER(pregunta) like ? ", '%'+search.toUpperCase().replace(/\s+/g, '%')+'%'], order : [["pregunta", "ASC"]]}).then(function(quizes){
-		res.render('quizes/index', {quizes: quizes});
-		});
+		res.render('quizes/index', {quizes: quizes, errors: []});
+		}).catch(function(error){next(error)});
 	 }
 };
 
 
 // GET /quizes/:id
 exports.show = function(req, res) {  
-		res.render('quizes/show', {quiz: req.quiz});	
+		res.render('quizes/show', {quiz: req.quiz, errors: []});	
 };            
 
 // GET /quizes/:id/answer
@@ -39,7 +39,7 @@ exports.answer = function(req, res) {
 	if((req.query.respuesta).toUpperCase() === (req.quiz.respuesta).toUpperCase()){
 	resultado='Correcto';
 	}
-	res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado});
+	res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado, errors: []});
 		
 };
 
@@ -50,16 +50,26 @@ exports.new = function(req, res) {
     {pregunta: "Pregunta", respuesta: "Respuesta"}
   );
 
-  res.render('quizes/new', {quiz: quiz});
+  res.render('quizes/new', {quiz: quiz, errors: []});
 };
 
 
 // POST /quizes/create
 exports.create = function(req, res) {
 	var quiz = models.Quiz.build( req.body.quiz );
-	//guarda en BD los campos pregunta y respuesta de quiz
-	quiz.save({fields: ["pregunta", "respuesta"]}).then(function(){
-	res.redirect('/quizes');
-	})
-		
+	quiz
+	.validate()
+	.then( 
+	function(err){
+	if(err){
+		res.render('quizes/new', {quiz: quiz, errors: err.errors});
+	}else{
+		//guarda en BD los campos pregunta y respuesta de quiz
+		quiz.save({fields: ["pregunta", "respuesta"]})
+		.then( function(){
+		res.redirect('/quizes')
+		});
+	}
+	}).catch(function(error){next(error)});
 	};
+
