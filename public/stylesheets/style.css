@@ -67,6 +67,10 @@ background-color:#A9F5F2;
 padding:5px;
 }
 
+#tablaPreguntas .labelTitulo{
+color:green;
+}
+
 #divTabla tr{
 margin:5px;
 }
@@ -102,6 +106,12 @@ background-color:#CEE3F6;
 #divNew button{
 padding: 3px;
 background-color:#CEE3F6;
+}
+
+#divNew select {
+width:40%;
+padding:5px;
+margin:10px;
 }
 
 nav span {
