@@ -147,3 +147,31 @@ background-color:#cee3f6;
 margin-top:20px;
 padding: 5px;
 }
+
+.right {
+float: right;
+}
+
+.formLogin{
+margin:20px;
+}
+
+.inputLogin{
+width:30%;
+margin-top: 10px !important;
+padding: 5px;
+}
+
+.btnLogin{
+background-color:#0489B1;
+color:white;
+padding:5px;
+}
+
+.formLogin .field{
+margin:20px;
+}
+
+.formLogin .actions{
+margin:20px;
+}
