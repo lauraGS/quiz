@@ -175,3 +175,8 @@ margin:20px;
 .formLogin .actions{
 margin:20px;
 }
+
+.btnPublicar{
+background-color: #cee3f6;
+    padding: 5px;
+}
