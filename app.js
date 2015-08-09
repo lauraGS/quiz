@@ -37,7 +37,7 @@ app.use(function(req, res, next){
 	if(req.session.fechaSession){
 		var fechaActualDate = new Date();
 		var fechaSessionDate = new Date(req.session.fechaSession);
-			if((fechaActualDate - fechaSessionDate) > 60000){
+			if((fechaActualDate - fechaSessionDate) > 120000){
 				delete req.session.user;
 				delete req.session.fechaSession;
 			}
