@@ -30,6 +30,22 @@ app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//auto-logout
+
+app.use(function(req, res, next){
+	if(req.session.fechaSession){
+		var fechaActualDate = new Date();
+		var fechaSessionDate = new Date(req.session.fechaSession);
+			if((fechaActualDate - fechaSessionDate) > 60000){
+				delete req.session.user;
+				delete req.session.fechaSession;
+			}
+	}
+	next();
+});
+
+
 //Helpers dinamicos
 app.use(function(req, res, next){
 	//guardar path en session.redir para despues de login
@@ -43,6 +59,7 @@ app.use(function(req, res, next){
 });
 
 app.use('/', routes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
