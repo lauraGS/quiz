@@ -14,7 +14,7 @@ exports.load = function(req, res){
 			//número medio de comentarios por pregunta
 			datos.numComentariosMedio = datos.numComentarios / datos.numPreguntas;
 				
-			models.Comment.findAll({group: 'QuizId'}).then(function(result){
+			models.Comment.findAll({group: ['QuizId']}).then(function(result){
 					//número de preguntas con comentarios
 					datos.numPregComent = result.length;
 					
